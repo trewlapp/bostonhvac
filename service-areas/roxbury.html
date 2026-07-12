@@ -410,13 +410,15 @@
 function toggleFaq(el) {
   el.classList.toggle('active');
   const answer = el.nextElementSibling;
-  const cur = answer.style.maxHeight;
-  if (cur && cur !== '0' && cur !== '0px') {
+  const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0' && answer.style.maxHeight !== '0px';
+  if (isOpen) {
     answer.style.maxHeight = '0';
     answer.style.padding = '0 24px';
   } else {
-    answer.style.maxHeight = answer.scrollHeight + 'px';
+    // Set padding first so scrollHeight includes it
     answer.style.padding = '18px 24px';
+    // Use a large enough max-height to show all content
+    answer.style.maxHeight = '600px';
   }
 }
 </script>
